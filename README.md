@@ -45,8 +45,9 @@ The gradient in $Eq. (4)$ written as
 \frac{\partial\ ln(P(m|E))}{\partial x} = H^T \left(\frac{m}{E} - 1\right). (5)
 ```
 We propose the following arbitrary and key step
-$$\lambda = \hat{x}^{(k)}, \tag{6}$$
+$$\lambda = \hat{x}^{(k)}, (6)$$
 where the division is element-wise. The step size at position $i$ of $(j+1)$ step is proportional to the estimated ground truth of last step divided by the probability the observation at this position not being blurred, e.g., the probability of the photon from the light source being received by the detector at the same position. With $Eq. (5)$ and $Eq.(6)$ we have
+
 ```math
 \hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}} 
 = \hat{x}^{(k)} \otimes \frac{H^Tm}{Hx^{(k)}},
@@ -67,7 +68,7 @@ $$H =
 0   &0    &0   &0.9  &0.1
 \end{array} \right).$$
  Then the distribution of observation follow Poisson distribution with mean
-$$\lambda = Hx.$$
+$$m = Hx.$$
 We sample one observation from this Poisson distribution with `numpy.random` module
 
 ```python
