@@ -21,7 +21,9 @@ $$P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. \tag{3}
 It is convenient to work with $ln(P)$ when analysing its maximum by taking derivative
 $$ln(P(m|E)) = \sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right]$$
 We want to reconstruct ground truth $x$ from observation $m$ by iteration. The estimator of ground truth at $(k+1)$ step is
-$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial{\ ln(P(m|E))}}{\partial{x}}\bigg|_{\hat{x}^{(k)}}.(4)$$
+```math
+\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial{\ ln(P(m|E))}}{\partial{x}}\bigg|_{\hat{x}^{(k)}}.(4)
+```
 For the $j$-th element of the gradient, we have
 $$\frac{\partial\ ln(P(m|E))}{\part x_j} 
 = \frac{\partial}{\partial x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
