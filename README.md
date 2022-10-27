@@ -1,6 +1,6 @@
 # README
 
-Python implementation of shift variant one-dimensional Richardson-Lucy reconstruction method.
+Python implementation of shift variant one-dimensional Richardson-Lucy reconstruction method. In this method, the point spread function (PSF) also depends on the position of the point. For shift invariant version, a nice implementation could be found at [skimage](https://github.com/scikit-image/scikit-image/blob/f5e9b61e2c4935f181a2de6fcbc4f728e03baa23/skimage/restoration/deconvolution.py#L329-L385). 
 
 ## Derivation
 
