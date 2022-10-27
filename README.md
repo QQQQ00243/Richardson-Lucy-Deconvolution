@@ -11,30 +11,30 @@ $$P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}), $$
 where $h_{i-j}^{(j)}$ is the probability of shift being $(i-j)$ for objects from position $j$.
 
 By Le Cam's Theorem, the observation could be approximated by Poisson distribution for large number of objects at every position. For observation at position $i$, the mean $E_i$ is the sum of products of number of objects and corresponding shift probability at every position 
-$$E_i = \sum_{j=1}^Kh_{i-j}^{(j)}x_j.\tag{1}\label{eq1}$$
+$$E_i = \sum_{j=1}^Kh_{i-j}^{(j)}x_j.\tag{1}$$
 The transition could be written as
-$$E = Hx,\tag{2}\label{eq2}$$
+$$E = Hx,\tag{2}$$
 where $H$ is the transition matrix with $[h_{ij}]=[h_{i-j}^{(j)}]$.
 
 The probability of observation $m$ is given by
-$$P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. \tag{3}\label{eq3}$$
+$$P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. \tag{3}$$
 It is convenient to work with $ln(P)$ when analysing its maximum by taking derivative
 $$ln(P(m|E)) = \sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right]$$
 We want to reconstruct ground truth $x$ from observation $m$ by iteration. The estimator of ground truth at $(k+1)$ step is
-$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}}. \tag{4}\label{eq4}$$
+$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}}. \tag{4}$$
 For the $j$-th element of the gradient, we have
 $$\frac{\part\ ln(P(m|E))}{\part x_j} 
 = \frac{\part}{\part x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
 = \sum_i^K\left[m_i\frac{\part}{\part x_j}lnE_i - \frac{\part}{\part x_j}E_i\right] 
 = \sum_i^K\frac{\part E_i}{\part x_j}\left[\frac{m_i}{E_i} - 1\right].$$
-By $Eq.\eqref{eq1}$ we have
+By $Eq.(1)$ we have
 $$\frac{\part\ ln(P(m|E))}{\part x_j} 
 = \sum_i^K H_{ij} \left[\frac{m_i}{E_i} - 1\right] = \sum_i^K H_{ji}^T \left[\frac{m_i}{E_i} - 1\right].$$
-The gradient in $Eq. \eqref{eq4}$ could be written as
-$$\frac{\part\ ln(P(m|E))}{\part x} = H^T \left(\frac{m}{E} - 1\right). \tag{5}\label{eq5}$$
+The gradient in $Eq. (4)$ written as
+$$\frac{\part\ ln(P(m|E))}{\part x} = H^T \left(\frac{m}{E} - 1\right). \tag{5}$$
 We propose the following arbitrary and key step
-$$\lambda = \hat{x}^{(k)}, \tag{6}\label{eq6}$$
-where the division is element-wise. The step size at position $i$ of $(j+1)$ step is proportional to the estimated ground truth of last step divided by the probability the observation at this position not being blurred, e.g., the probability of the photon from the light source being received by the detector at the same position. With $Eq. \eqref{eq5}$ and $Eq. \eqref{eq6}$ we have
+$$\lambda = \hat{x}^{(k)}, \tag{6}$$
+where the division is element-wise. The step size at position $i$ of $(j+1)$ step is proportional to the estimated ground truth of last step divided by the probability the observation at this position not being blurred, e.g., the probability of the photon from the light source being received by the detector at the same position. With $Eq. (5)$ and $Eq.(6)$ we have
 $$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}} 
 = \hat{x}^{(k)} \otimes \frac{H^Tm}{Hx^{(k)}},$$
 where the division is element-wise.
