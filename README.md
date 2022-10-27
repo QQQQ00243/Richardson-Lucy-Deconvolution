@@ -6,7 +6,12 @@ Python implementation of shift variant one-dimensional Richardson-Lucy reconstru
 
 For a set of objects at different positions, the set of number is $x=[x_1, x_2, \cdots, x_n]$, our observation is $m=[m_1, m_2, \cdots, m_n]$. However, objects may spread into neighboring positions and our observation may be blurred by this transition, i.e. observed objects at certain position are actually consisted by objects at the same position and other objects from other positions. For example, for a optical system, $x_i$ is the number of emitted photons of light source at position $i$ and $m_i$ the number of received photons by detector at position $i$. Our observation, however, is inevitably blurred, with an ideal point source not appearing as a point but being spread out into what is known as the point spread function.
 
-We assume that for each object, the shift between true and observed position follows a categorical distribution. When marginalizing on objects from position $j$, the observation at $i$ becomes binomial distribution
+We assume that for each object, the shift between true and observed position follows a categorical distribution. When marginalizing on objects from position $j$, the observation at $i$ becomes binomial distribution 
+
+```math
+P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}),
+```
+
 $$
 P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}),
 $$
