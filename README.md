@@ -23,10 +23,10 @@ $$ln(P(m|E)) = \sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right]$$
 We want to reconstruct ground truth $x$ from observation $m$ by iteration. The estimator of ground truth at $(k+1)$ step is
 $$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}}. \tag{4}$$
 For the $j$-th element of the gradient, we have
-$$\frac{\part\ ln(P(m|E))}{\part x_j} 
-= \frac{\part}{\part x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
-= \sum_i^K\left[m_i\frac{\part}{\part x_j}lnE_i - \frac{\part}{\part x_j}E_i\right] 
-= \sum_i^K\frac{\part E_i}{\part x_j}\left[\frac{m_i}{E_i} - 1\right].$$
+$$\frac{\partial\ ln(P(m|E))}{\part x_j} 
+= \frac{\partial}{\partial x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
+= \sum_i^K\left[m_i\frac{\partial}{\partial x_j}lnE_i - \frac{\partial}{\partial x_j}E_i\right] 
+= \sum_i^K\frac{\partial E_i}{\partial x_j}\left[\frac{m_i}{E_i} - 1\right].$$
 By $Eq.(1)$ we have
 $$\frac{\part\ ln(P(m|E))}{\part x_j} 
 = \sum_i^K H_{ij} \left[\frac{m_i}{E_i} - 1\right] = \sum_i^K H_{ji}^T \left[\frac{m_i}{E_i} - 1\right].$$
