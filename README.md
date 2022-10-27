@@ -17,28 +17,40 @@ $$E = Hx,\tag{2}$$
 where $H$ is the transition matrix with $[h_{ij}]=[h_{i-j}^{(j)}]$.
 
 The probability of observation $m$ is given by
-$$P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. \tag{3}$$
+```math
+P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. (3)
+```
 It is convenient to work with $ln(P)$ when analysing its maximum by taking derivative
 $$ln(P(m|E)) = \sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right]$$
 We want to reconstruct ground truth $x$ from observation $m$ by iteration. The estimator of ground truth at $(k+1)$ step is
+
 ```math
 \hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial{\ ln(P(m|E))}}{\partial{x}}\bigg|_{\hat{x}^{(k)}}.(4)
 ```
 For the $j$-th element of the gradient, we have
-$$\frac{\partial\ ln(P(m|E))}{\part x_j} 
+```math
+\frac{\partial\ ln(P(m|E))}{\part x_j} 
 = \frac{\partial}{\partial x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
 = \sum_i^K\left[m_i\frac{\partial}{\partial x_j}lnE_i - \frac{\partial}{\partial x_j}E_i\right] 
-= \sum_i^K\frac{\partial E_i}{\partial x_j}\left[\frac{m_i}{E_i} - 1\right].$$
+= \sum_i^K\frac{\partial E_i}{\partial x_j}\left[\frac{m_i}{E_i} - 1\right].
+```
+
 By $Eq.(1)$ we have
-$$\frac{\part\ ln(P(m|E))}{\part x_j} 
-= \sum_i^K H_{ij} \left[\frac{m_i}{E_i} - 1\right] = \sum_i^K H_{ji}^T \left[\frac{m_i}{E_i} - 1\right].$$
+```math
+\frac{\part\ ln(P(m|E))}{\part x_j} 
+= \sum_i^K H_{ij} \left[\frac{m_i}{E_i} - 1\right] = \sum_i^K H_{ji}^T \left[\frac{m_i}{E_i} - 1\right].
+```
 The gradient in $Eq. (4)$ written as
-$$\frac{\part\ ln(P(m|E))}{\part x} = H^T \left(\frac{m}{E} - 1\right). \tag{5}$$
+```math
+\frac{\partial\ ln(P(m|E))}{\partial x} = H^T \left(\frac{m}{E} - 1\right). (5)
+```
 We propose the following arbitrary and key step
 $$\lambda = \hat{x}^{(k)}, \tag{6}$$
 where the division is element-wise. The step size at position $i$ of $(j+1)$ step is proportional to the estimated ground truth of last step divided by the probability the observation at this position not being blurred, e.g., the probability of the photon from the light source being received by the detector at the same position. With $Eq. (5)$ and $Eq.(6)$ we have
-$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}} 
-= \hat{x}^{(k)} \otimes \frac{H^Tm}{Hx^{(k)}},$$
+```math
+\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}} 
+= \hat{x}^{(k)} \otimes \frac{H^Tm}{Hx^{(k)}},
+```
 where the division is element-wise.
 
 ## Example
