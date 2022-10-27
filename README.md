@@ -7,7 +7,7 @@ Python implementation of shift variant one-dimensional Richardson-Lucy reconstru
 For a set of objects at different positions, the set of number is $x=[x_1, x_2, \cdots, x_n]$, our observation is $m=[m_1, m_2, \cdots, m_n]$. However, objects may spread into neighboring positions and our observation may be blurred by this transition, i.e. observed objects at certain position are actually consisted by objects at the same position and other objects from other positions. For example, for a optical system, $x_i$ is the number of emitted photons of light source at position $i$ and $m_i$ the number of received photons by detector at position $i$. Our observation, however, is inevitably blurred, with an ideal point source not appearing as a point but being spread out into what is known as the point spread function.
 
 We assume that for each object, the shift between true and observed position follows a categorical distribution. When marginalizing on objects from position $j$, the observation at $i$ becomes binomial distribution 
-$$P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}), $$
+$$P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}),$$
 where $h_{i-j}^{(j)}$ is the probability of shift being $(i-j)$ for objects from position $j$.
 
 By Le Cam's Theorem, the observation could be approximated by Poisson distribution for large number of objects at every position. For observation at position $i$, the mean $E_i$ is the sum of products of number of objects and corresponding shift probability at every position 
@@ -21,7 +21,7 @@ $$P(m|E) = \prod_i^KPois(E_i) = \prod_i^K\frac{E_i^{m_i}e^{-E_i}}{m_i!}. \tag{3}
 It is convenient to work with $ln(P)$ when analysing its maximum by taking derivative
 $$ln(P(m|E)) = \sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right]$$
 We want to reconstruct ground truth $x$ from observation $m$ by iteration. The estimator of ground truth at $(k+1)$ step is
-$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}}. \tag{4}$$
+$$\hat{x}^{(k+1)} = \hat{x}^{(k)} + \lambda\frac{\partial\ ln(P(m|E))}{\partial x}\bigg|_{\hat{x}^{(k)}}.(4)$$
 For the $j$-th element of the gradient, we have
 $$\frac{\partial\ ln(P(m|E))}{\part x_j} 
 = \frac{\partial}{\partial x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
