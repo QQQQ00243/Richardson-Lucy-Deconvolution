@@ -11,9 +11,9 @@ $$P(m_i|x_j, h_{i-j}^{(j)}) = \mathcal{B}(x_j, h_{i-j}^{(j)}),$$
 where $h_{i-j}^{(j)}$ is the probability of shift being $(i-j)$ for objects from position $j$.
 
 By Le Cam's Theorem, the observation could be approximated by Poisson distribution for large number of objects at every position. For observation at position $i$, the mean $E_i$ is the sum of products of number of objects and corresponding shift probability at every position 
-$$E_i = \sum_{j=1}^Kh_{i-j}^{(j)}x_j.\tag{1}$$
+$$E_i = \sum_{j=1}^Kh_{i-j}^{(j)}x_j.(1)$$
 The transition could be written as
-$$E = Hx,\tag{2}$$
+$$E = Hx,(2)$$
 where $H$ is the transition matrix with $[h_{ij}]=[h_{i-j}^{(j)}]$.
 
 The probability of observation $m$ is given by
@@ -29,7 +29,7 @@ We want to reconstruct ground truth $x$ from observation $m$ by iteration. The e
 ```
 For the $j$-th element of the gradient, we have
 ```math
-\frac{\partial\ ln(P(m|E))}{\part x_j} 
+\frac{\partial\ ln(P(m|E))}{\partial x_j} 
 = \frac{\partial}{\partial x_j}\sum_i^K\left[(m_ilnE_i - E_i)-ln(m_i!)\right] 
 = \sum_i^K\left[m_i\frac{\partial}{\partial x_j}lnE_i - \frac{\partial}{\partial x_j}E_i\right] 
 = \sum_i^K\frac{\partial E_i}{\partial x_j}\left[\frac{m_i}{E_i} - 1\right].
@@ -37,7 +37,7 @@ For the $j$-th element of the gradient, we have
 
 By $Eq.(1)$ we have
 ```math
-\frac{\part\ ln(P(m|E))}{\part x_j} 
+\frac{\partial\ ln(P(m|E))}{\partial x_j} 
 = \sum_i^K H_{ij} \left[\frac{m_i}{E_i} - 1\right] = \sum_i^K H_{ji}^T \left[\frac{m_i}{E_i} - 1\right].
 ```
 The gradient in $Eq. (4)$ written as
